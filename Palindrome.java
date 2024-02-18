@@ -1,4 +1,5 @@
 public class Palindrome {
+
     public static void main(String [] args) {
 	    System.out.println("Hello palindrome"); // Hello palindrome
         if (args != null && args.length == 1 && args[0].toLowerCase().equals("-usage")) {
@@ -11,7 +12,22 @@ public class Palindrome {
             System.out.println("String to check for palindrome is mandatory");
             return;
         }
-        String original = args[0];
+        Palindrome palindrome = new Palindrome();
+        if (palindrome.isPalindrome(args)) {
+            System.out.println(String.format("%s is palindrome", palindrome.getOriginal()));
+        } else {
+            System.out.println(String.format("%s is not palindrome", palindrome.getOriginal()));
+        }
+    }
+
+    private String original;
+
+    String getOriginal() {
+        return original;
+    }
+
+    private boolean isPalindrome(String [] args) {
+        original = args[0];
         String checkForPalindrome = original;
         boolean ignoreCase = args.length == 2;
         if (ignoreCase) {
@@ -22,7 +38,7 @@ public class Palindrome {
         }
         if (checkForPalindrome.length() == 1) {
             System.out.println("Palindrome of one character");
-            return;
+            return true;
         }
         int start = 0;
         int end = checkForPalindrome.length() - 1;
@@ -38,10 +54,7 @@ public class Palindrome {
             start += 1;
             end -= 1;
         }
-        if (isPalindrome) {
-            System.out.println(String.format("%s is palindrome", original));
-        } else {
-            System.out.println(String.format("%s is not palindrome", original));
-        }
+
+        return isPalindrome;
     }
 }
